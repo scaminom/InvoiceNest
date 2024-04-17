@@ -11,9 +11,6 @@ import { InvoiceDetailController } from './invoice-detail.controller';
   controllers: [InvoiceController, InvoiceDetailController],
   providers: [InvoiceService, InvoiceDetailService],
   exports: [InvoiceService, InvoiceDetailService],
-  imports: [
-    TypeOrmModule.forFeature([Invoice, InvoiceDetail])
-  ]
+  imports: [TypeOrmModule.forFeature([Invoice, InvoiceDetail])],
 })
-export class InvoiceModule { }
-
+export class InvoiceModule {}

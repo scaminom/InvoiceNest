@@ -35,12 +35,6 @@ export class Customer {
   })
   phone: string | null;
 
-  @CreateDateColumn({
-    name: 'register_date',
-    type: 'timestamp',
-  })
-  registerDate: Date;
-
   @Column({
     name: 'is_active',
     type: 'boolean',

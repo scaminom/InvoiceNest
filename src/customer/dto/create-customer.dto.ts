@@ -1,13 +1,9 @@
-import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsString()
   @IsNotEmpty()
-  firstName: string;
-
-  @IsString()
-  @IsNotEmpty()
-  lastName: string;
+  email: string;
 
   @IsString()
   @IsNotEmpty()
@@ -17,11 +13,11 @@ export class CreateCustomerDto {
   @IsNotEmpty()
   phone: string;
 
-  @IsString()
-  @IsNotEmpty()
-  dni: string;
-
   @IsBoolean()
   @IsNotEmpty()
   isActive: boolean;
+
+  @IsNumber()
+  @IsNotEmpty()
+  personId: number;
 }

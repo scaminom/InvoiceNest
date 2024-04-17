@@ -10,11 +10,10 @@ import { UpdateInvoiceDetailDto } from './dto/update-invoice-detail.dto';
 
 @Injectable()
 export class InvoiceDetailService {
-
   constructor(
     @InjectRepository(InvoiceDetail)
     private readonly invoiceDetailRepository: Repository<InvoiceDetail>,
-  ) { }
+  ) {}
 
   async create(createInvoiceDetailDto: CreateInvoiceDetailDto) {
     const newInvoiceDetail = this.invoiceDetailRepository.create({
@@ -22,20 +21,21 @@ export class InvoiceDetailService {
       quantity: createInvoiceDetailDto.quantity,
       unitPrice: createInvoiceDetailDto.unitPrice,
       isActive: createInvoiceDetailDto.isActive,
-      invoice: createInvoiceDetailDto.invoiceId
-    } as DeepPartial<InvoiceDetail>
-    );
+      invoice: createInvoiceDetailDto.invoiceId,
+    } as DeepPartial<InvoiceDetail>);
     return await this.invoiceDetailRepository.save(newInvoiceDetail);
   }
 
   async findAll() {
-    const queryBuilder = this.invoiceDetailRepository.createQueryBuilder('invoiceDetail')
+    const queryBuilder = this.invoiceDetailRepository
+      .createQueryBuilder('invoiceDetail')
       .leftJoinAndSelect('invoiceDetail.invoice', 'invoice');
     return await queryBuilder.getMany();
   }
 
   async findOne(id: number) {
-    const queryBuilder = this.invoiceDetailRepository.createQueryBuilder('invoiceDetail')
+    const queryBuilder = this.invoiceDetailRepository
+      .createQueryBuilder('invoiceDetail')
       .leftJoinAndSelect('invoiceDetail.invoice', 'invoice');
     return await queryBuilder.where('invoiceDetail.id = :id', { id }).getOne();
   }

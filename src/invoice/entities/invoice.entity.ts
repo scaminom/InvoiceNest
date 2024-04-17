@@ -1,5 +1,13 @@
 import { Customer } from 'src/customer/entities/customer.entity';
-import { BeforeInsert, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { InvoiceDetail } from './detail-invoice.entity';
 
 @Entity('invoice')

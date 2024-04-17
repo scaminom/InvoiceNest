@@ -1,6 +1,11 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Invoice } from './invoice.entity';
-import { Product } from 'src/product/entities/product.entity';
 
 @Entity('invoice_detail')
 export class InvoiceDetail {
@@ -16,8 +21,4 @@ export class InvoiceDetail {
   @ManyToOne(() => Invoice, (invoice) => invoice.details)
   @JoinColumn({ name: 'invoice_id' })
   invoice: Invoice;
-
-  @ManyToOne(() => Product, (product) => product.invoiceDetails)
-  @JoinColumn({ name: 'poduct_id' })
-  product: Product;
 }
