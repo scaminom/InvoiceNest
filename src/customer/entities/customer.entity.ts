@@ -1,31 +1,56 @@
 import { Invoice } from 'src/invoice/entities/invoice.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Person } from 'src/person/entities/person.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity('customer')
+@Entity('customers')
 export class Customer {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column({ name: 'first_name' })
-  firstName: string;
-
-  @Column({ name: 'last_name' })
-  lastName: string;
-
-  @Column()
-  address: string;
-
-  @Column()
-  phone: string;
+  @Column({
+    name: 'email',
+    type: 'varchar',
+  })
+  email: string;
 
   @Column({
-    unique: true,
-    length: 10,
+    name: 'address',
+    type: 'varchar',
   })
-  dni: string;
+  address: string;
 
-  @Column()
+  @Column({
+    name: 'phone',
+    type: 'varchar',
+    length: 13,
+    nullable: true,
+  })
+  phone: string | null;
+
+  @CreateDateColumn({
+    name: 'register_date',
+    type: 'timestamp',
+  })
+  registerDate: Date;
+
+  @Column({
+    name: 'is_active',
+    type: 'boolean',
+    default: true,
+  })
   isActive: boolean;
+
+  @OneToOne(() => Person, (person) => person.customer)
+  @JoinColumn({ name: 'person_id' })
+  person: Person;
 
   @OneToMany(() => Invoice, (invoice) => invoice.customer)
   invoices: Invoice[];
