@@ -1,5 +1,5 @@
 import { Invoice } from 'src/invoice/entities/invoice.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('customer')
 export class Customer {
@@ -18,12 +18,10 @@ export class Customer {
   @Column()
   phone: string;
 
-  @Column(
-    {
-      unique: true,
-      length: 10,
-    }
-  )
+  @Column({
+    unique: true,
+    length: 10,
+  })
   dni: string;
 
   @Column()
